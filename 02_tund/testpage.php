@@ -6,8 +6,20 @@
   
   if($hourNow < 8) {
 	  $partOfDay = "hommik";
+	  }
 	  
-  }
+  if($hourNow > 17) {
+	  $partOfDay = "õhtu";
+      }
+  if($hourNow <= 14 ) {
+	  $partOfDay = "pärastlõuna";
+      }
+  if($hourNow == 21 ) {
+	  $partOfDay = "AK aeg";
+      }
+  #if($hourNow >= 15 && <= 16) {
+	  #$partOfDay = "söögiaeg";
+  #}
 ?>
 
 <!DOCTYPE html>
