@@ -1,9 +1,8 @@
 <?php
-  require ("../../../config_vp2019.php");
-  require ("functions_main.php");
-  require ("functions_user.php");
+  require("../../../config_vp2019.php");
+  require("functions_main.php");
+  require("functions_user.php");
   $database = "if19_henri_ma_1";
-  
   
   $notice = null;
   $name = null;
@@ -47,10 +46,19 @@
 	  }//eesnime kontroll
 	  
 	  //perekonnanimi
+	  if (isset($_POST["surName"]) and !empty($_POST["surName"])){
 	  $surname = test_input($_POST["surName"]);
-	  
+	  } else {
+		$surnameError = "Palun sisesta perekonnanimi!";
+	  }
 	  //sugu
-	  $gender = test_input($_POST["gender"]);
+	  //$gender = test_input($_POST["gender"]);
+	  
+	  if(isset($_POST["gender"])){
+	    $gender = intval($_POST["gender"]);
+	} else {
+		$genderError = "Palun märgi sugu!";
+	}
   //}
   //kontrollime, kas sünniaeg sisestati ja kas on korrektne
   if(isset($_POST["birthDay"]) and !empty($_POST["birthDay"])){
@@ -193,6 +201,7 @@
 	  <input name="submitUserData" type="submit" value="Loo kasutaja"><span><?php echo $notice; ?></span>
 	</form>
 	<hr>
+	<p>Tagasi <a href="page.php">avalehele</a>!</p>
 		
   </body>
 </html>

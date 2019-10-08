@@ -1,4 +1,5 @@
 <?php
+  //session_start();
   require ("../../../config_vp2019.php");
   require("functions_main.php");
   require("functions_user.php");
@@ -20,7 +21,6 @@
   $monthNow = date("m");
   $yearNow = date("Y");
   $timeNow = date("H:i:s");
-  
   $fullTimeNow = date("d.m.Y H:i:s");
   $hourNow = date ("H");
   $partOfDay = "hägune aeg";
@@ -80,9 +80,8 @@
   //<img src="../photos/tlu_terra_600x400_1.jpg" alt="TLÜ Terra õppehoone">
   $randomImgHTML = '<img src="' .$photoDir . $photoList[$photoNum].'" alt="juhuslik foto">';
   
-  //sisselogimine
-  
-  if(isset($_POST["login"])){
+    //sisselogimine
+    if(isset($_POST["login"])){
 		if (isset($_POST["email"]) and !empty($_POST["email"])){
 		  $email = test_input($_POST["email"]);
 		} else {
@@ -100,11 +99,10 @@
 		}
 	  }
  
-require ("header.php");
+	require("header.php");
 
     echo "<h1>" .$userName .", veebiprogrammeerimine</h1>";
   ?>
-
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <?php
     echo $semesterInfoHTML;
@@ -125,6 +123,8 @@ require ("header.php");
 	  <input name="login" type="submit" value="Logi sisse">&nbsp;<span><?php echo $notice; ?>
 	</form>
 	<br>
+	<h2>Kui pole kasutajakontot</h2>
+	<p>Loo <a href="newuser.php">kasutajakonto</a>!</p>
   
   <?php
 	echo $randomImgHTML;
