@@ -68,4 +68,60 @@ function signUp($name, $surname, $email, $gender, $birthDate, $password){
 	$stmt->close();
 	$mysqli->close();
 	return $notice;
+	
+	function storeuserprofile($description, $bgColor, $txtColor){
+	$notice = "";
+	$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+    $stmt = $conn->prepare("SELECT id FROM vpuserprofiles WHERE userid=?");
+	echo $conn->error;
+	$stmt->bind_param("i", $_SESSION["userID"]);
+	$stmt->bind_result($idFromDb);
+	$stmt->execute();
+	if($stmt->fetch()){
+		//profiil juba olemas, uuendame
+		$stmt->close();
+		$stmt = $conn->prepare("UPDATE vpuserprofiles SET description = ?, bgcolor = ?, txtcolor = ? WHERE userid = ?");
+		echo $conn->error;
+		$stmt->bind_param("sssi", $description, $bgColor, $txtColor, $_SESSION["userID"]);
+		if($stmt->execute()){
+			$notice = "Profiil edukalt uuendatud!";
+			$_SESSION["bgColor"] = $bgColor;
+	        $_SESSION["txtColor"] = $txtColor;
+		} else {
+			$notice = "Profiili salvestamisel tekkis tõrge! " .$stmt->error;
+		}
+		//$notice = "Profiil olemas, ei salvestanud midagi!";
+	} else {
+		//profiili pole, salvestame
+		$stmt->close();
+		$stmt = $conn->prepare("INSERT INTO vpuserprofiles (userid, description, bgcolor, txtcolor) VALUES(?,?,?,?)");
+		echo $conn->error;
+		$stmt->bind_param("isss", $_SESSION["userID"], $description, $bgColor, $txtColor);
+		if($stmt->execute()){
+			$notice = "Profiil edukalt salvestatud!";
+		} else {
+			$notice = "Profiili salvestamisel tekkis tõrge! " .$stmt->error;
+		}
+	}
+	$stmt->close();
+	$conn->close();
+	return $notice;
+  }
   }//sisselogimine lõppeb
+  
+  function showMyDesc (){
+	$notice = null;
+	$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+	$stmt = $conn->prepare("SELECT description FROM vpuserprofiles WHERE userid=?");
+	echo $conn->error;
+	$stmt->bind_param("i", $_SESSION["userID"]);
+	$stmt->bind_result ($descriptionFromDb);
+	$stmt->execute();
+	$stmt->fetch(); {
+	  $notice = $descriptionFromDb;
+	}
+	$stmt -> close();
+	$conn -> close();
+	return $notice;
+  }
+	

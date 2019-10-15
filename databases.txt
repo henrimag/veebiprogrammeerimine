@@ -5,3 +5,7 @@ CREATE TABLE `if19_henri_ma_1`.`vpusers` ( `id` INT(11) NOT NULL AUTO_INCREMENT 
 Loeng_6
 
 CREATE TABLE `if19_henri_ma_1`.`vpuserprofiles` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `userid` INT(11) NOT NULL , `description` VARCHAR(2000) NULL , `bgcolor` VARCHAR(7) NULL , `txtcolor` VARCHAR(7) NULL , `picture` INT(11) NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+Loeng_7
+
+CREATE TABLE `if19_henri_ma_1`.`vpmsg` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `userid` INT(11) NOT NULL , `message` VARCHAR(256) NOT NULL , `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `deleted` DATE NULL , `deletedby` INT(11) NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

@@ -1,10 +1,10 @@
-<?php
+<?php	
   //session_start();
   require ("../../../config_vp2019.php");
   require("functions_main.php");
   require("functions_user.php");
   $database = "if19_henri_ma_1";
-  $userName = "Sisselogimata kasutaja";
+  //$userName = "Sisselogimata kasutaja";
   
   $notice = "";
   $email = "";
@@ -99,12 +99,23 @@
 			$notice = "Ei saa sisse logida!";
 		}
 	  }
+	  
  
-	require("header.php");
+	//require("header.php");
 
-    echo "<h1>" .$userName .", veebiprogrammeerimine</h1>";
+    //echo "<h1>" .$userName .", veebiprogrammeerimine</h1>";
   ?>
-  <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
+  
+  <!DOCTYPE html>
+	<html>
+	<head>
+    <meta charset="utf-8">
+	<title>Katselise veebi uue kasutaja loomine</title>
+	</head>
+	<body>
+    <h1>Loo endale kasutajakonto</h1>
+	<p>See leht on valminud TLÜ õppetöö raames ja ei oma mingisugust, mõtestatud või muul moel väärtuslikku sisu.</p>
+	<hr>
   <?php
     echo $semesterInfoHTML;
   ?>  
