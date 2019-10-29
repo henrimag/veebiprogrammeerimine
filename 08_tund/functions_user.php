@@ -45,7 +45,7 @@ function signUp($name, $surname, $email, $gender, $birthDate, $password){
 		  $notice = "Sisse logis " .$firstnameFromDb ." " .$lastnameFromDb ."!";
 		  
 		  //annan sessioonimuutujatele väärtused
-		  $_SESSION["userId"] = $idFromDb;
+		  $_SESSION["userID"] = $idFromDb;  // Id muudetud ID
 		  $_SESSION["userFirstname"] = $firstnameFromDb;
 		  $_SESSION["userLastname"] = $lastnameFromDb;
 		  
