@@ -70,8 +70,7 @@
 		$uploadOk = 0;
 	}
 	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" ) {
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
 		echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
 		$uploadOk = 0;
 	}
@@ -82,17 +81,16 @@
 	} else {
 		
 		//kasutame klassi
-	$myPic = new Picupload($_FILES["fileToUpload"]["tmp_name"], $imageFileType);
-		
+		$myPic = new Picupload($_FILES["fileToUpload"]["tmp_name"], $imageFileType);
 		//teeme pildi väiksemaks
 		$myPic->resizeImage($maxPicW, $maxPicH);
 		//lisame vesimärgi
-		$myPic->addWatermark("../vp_pics/vp_logo_w100_overlay-png");
+		$myPic->addWatermark("../vp_pics/vp_logo_w100_overlay.png");
 		//loeme pildiifaili pikslikogumiks "pildiobjektiks"
 		$notice .= $myPic->savePicFile($pic_upload_dir_w600 .$filename);
 		unset($myPic);
 		
-		imagedestroy($myTempImage);
+		//imagedestroy($myTempImage);
 		
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
@@ -120,6 +118,14 @@
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 	  <label>Vali üleslaetav pildifail!</label><br>
 	  <input type="file" name="fileToUpload" id="fileToUpload">
+	  <br>
+	  <label>Alt tekst: </label><input type="text" name="altText">
+	  <br>
+	  <label>Privaatsus</label>
+	  <br>
+	   <input type="radio" name="privacy" value="1"><label>Avalik</label>&nbsp;
+	  <input type="radio" name="privacy" value="2"><label>Sisseloginud kasutajatele</label>&nbsp;
+	  <input type="radio" name="privacy" value="3" checked><label>Isiklik</label>
 	  <br>
 	  <input name="submitPic" type="submit" value="Lae pilt üles"><span><?php echo $notice; ?></span>
 	</form>

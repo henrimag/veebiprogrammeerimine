@@ -36,8 +36,8 @@
   //<meter min="0" max="112" value="16">13%</meter>
   $semesterInfoHTML = null;
   if($semesterElapsed -> format("%r%a") >= 0) {
-	  $semesterInfoHTML = "<p>Semester on täies hoos:";
-	  $semesterInfoHTML .=  '"<meter min="0" max="'.$semesterDuration -> format("%r%a") .'" ';
+	  $semesterInfoHTML = "<p>Semester on täies hoos: ";
+	  $semesterInfoHTML .=  '<meter min="0" max="'.$semesterDuration -> format("%r%a") .'" ';
 	  $semesterInfoHTML .= 'value="' .$semesterElapsed -> format("%r%a") .'">';
 	  $semesterInfoHTML .= round($semesterElapsed -> format("%r%a") / $semesterDuration -> format("%r%a") * 100, 1) . "%";
 	  $semesterInfoHTML .= "</meter> </p>";

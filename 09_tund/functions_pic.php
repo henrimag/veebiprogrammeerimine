@@ -4,7 +4,7 @@
 		$conn = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $conn->prepare("INSERT INTO vpphotos (userid, filename, alttext, privacy) VALUES (?, ?, ?, ?)");
 		echo $conn->error;
-		$stmt->bind_param("issi", $_SESSION["userId"], $fileName, $altText, $privacy);
+		$stmt->bind_param("issi", $_SESSION["userID"], $fileName, $altText, $privacy);
 		if($stmt->execute()){
 			$notice = " Pildi andmed salvestati andmebaasi!";
 		} else {

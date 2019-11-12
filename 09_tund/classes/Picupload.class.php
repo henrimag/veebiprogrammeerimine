@@ -7,8 +7,8 @@
 	  
 	  function __construct($tmpPic, $imageFileType){
 		  $this->imageFileType = $imageFileType;
-		  $this->tmpPic = $tmpPic;  //mäletab infot
-		  $this->createImageFromFile;
+		  $this->tmpPic = $tmpPic; // mäletab infot
+		  $this->createImageFromFile();
 	  }
 	  
 	  function __destruct(){
@@ -44,25 +44,23 @@
 	  }
 	}//resizeImage lõppeb
 	
+		public function addWatermark($wmFile){
+		$waterMark = imagecreatefrompng($wmFile);
+		$waterMarkW = imagesx($waterMark);
+		$waterMarkH = imagesy($waterMark);
+		$waterMarkX = imagesx($this->myNewImage) - $waterMarkW - 10;
+		$waterMarkY = imagesx($this->myNewImage) - $waterMarkH - 10;
+		imagecopy ($this->myNewImage, $waterMark, $waterMarkX, $waterMarkY, 0, 0, $waterMarkW, $waterMarkH);
+	}//addWatermark lõppeb
+	
 	private function setPicSize($myTempImage, $imageW, $imageH, $imageNewW, $imageNewH){
 		$myNewImage = imagecreatetruecolor($imageNewW, $imageNewH);
 		imagecopyresampled($myNewImage, $myTempImage, 0, 0, 0, 0, $imageNewW, $imageNewH, $imageW, $imageH);
 		return $myNewImage;
 	}//setPicSize lõppeb
-	
-	public function addWatermark($wmFile){
-		$waterMark = imagecreatefrompng($wmFile);
-		$waterMarkW = imagesx($waterMark);
-		$waterMarkH = imagesy($waterMark);
-		$waterMarkX = imagesx($this->myNewImage) - $waterMarkW - 10;
-		$waterMarky = imagesx($this->myNewImage) - $waterMarkH - 10;
-		imagecopy ($this->myNewImage, $waterMark, $waterMarkX, $waterMarkY, 0, 0, $waterMarkW, $waterMarkH);
-	}//addWatermark lõppeb
 
-	// vähendatud faili
-		
+	// vähendatud faili	
 	public function savePicFile($filename){
-		
 		if($this->imageFileType == "jpg" or $this->imageFileType == "jpeg"){
 			if(imagejpeg($this->myNewImage, $filename, 90)) {
 				$notice = "Vähendatud faili salvestamine õnnestus!";
@@ -71,7 +69,7 @@
 			}
 		}
 		if($this->imageFileType == "png"){
-			if(imagejpeg($this->myNewImage, $filename, 5)) {
+			if(imagejpeg($this->myNewImage, $filename, 6)) {
 				$notice = "Vähendatud faili salvestamine õnnestus!";
 			}else{
 				$notice = "Vähendatud faili salvestamine ei õnnestunud!";
