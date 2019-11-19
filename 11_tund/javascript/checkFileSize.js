@@ -7,7 +7,7 @@ window.onload = function(){
 }
 
 function checkSize() {
-	let fileToUpload = document.getElementById("fileToUpload"). files[0];
+	let fileToUpload = document.getElementById("fileToUpload").files[0];
 	//console.log(fileToUpload);
 	if(fileToUpload.size <= 2500000) {
 		document.getElementById("submitPic").disabled = false;

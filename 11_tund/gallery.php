@@ -36,7 +36,8 @@
   $galleryHTML = readgalleryImages(2, $page, $limit);
   
   $toScript = "\t" .'<link rel="stylesheet" type="text/css" href="style/modal.css">' ."\n";
-  $toScript .= "\t" .'<script type="text/javascript" src="javascript/checkFileSize.js"> defer</script>' ."\n";
+  $toScript .= "\t" .'<script type="text/javascript" src="javascript/modal.js" defer></script>' ."\n";
+  //$toScript .= "\t" .'<script type="text/javascript" src="javascript/checkFileSize.js"> defer</script>' ."\n";
 
   require("header.php");
 ?>
@@ -65,9 +66,9 @@
 	<label><input id="rate3" name="rating" type="radio" value="3">3</label>
 	<label><input id="rate4" name="rating" type="radio" value="4">4</label>
 	<label><input id="rate5" name="rating" type="radio" value="5">5</label>
-	<input type = "button" value="Salvesta hinnang"~id="storeRating">
+	<input type = "button" value="Salvesta hinnang"id="storeRating">
   </div>
-  
+ </div>
   
   <p>
   <?php 

@@ -5,9 +5,9 @@ let photoId;
 let photoDir = "../picuploadw600h400/";
 
 window.onload = function (){
-	modal = document.getElementById("myModal")
-	modalImg = document.getElementById("modalImg")
-	captionText = document.getElementById("caption")
+	modal = document.getElementById("myModal");
+	modalImg = document.getElementById("modalImg");
+	captionText = document.getElementById("caption");
 	let allThumbs = document.getElementById("gallery").getElementsByTagName("img");
 	let thumbCount = allThumbs.length;
 	for(let i = 0; i < thumbCount; i ++){
@@ -29,7 +29,7 @@ function storeRating(){
 		let webRequest = new XMLHttpRequest();
 		webRequest.onreadystatechange = function() {
 			if(this.readyState == 4 && this.status == 200){
-				console.log(this.response.Text);
+				console.log(this.responseText);
 			}
 		}
 		webRequest.open("GET", "storePhotoRating.php?rating=" + rating, true); // tuleb lisada siia
@@ -38,6 +38,7 @@ function storeRating(){
 }
 
 function openModal(e) {
+	console.log(e)
 	modalImg.src = photoDir + e.target.dataset.fn;
 	modalImg.alt = e.target.alt;
 	modal.style.display = "block";
