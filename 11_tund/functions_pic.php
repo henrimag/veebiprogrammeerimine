@@ -25,14 +25,14 @@
 		$stmt->bind_result($fileNameFromDb, $altTextFromDb);
 		$stmt->execute();
 		while($stmt->fetch()){
-			//<img src="kataloog/pildifail" alt="tekst">
+			//<img src="kataloog/pildifail" alt="tekst" data-fn="failinimi">
 			$html .= '<img src="' .$GLOBALS ["pic_upload_dir_thumb"] .$fileNameFromDb .'" alt="';
 			if($altTextFromDb == null){
 				$html .= "Foto";
 			} else {
 				$html .= $altTextFromDb;
 			}
-			$html .= '">' ."\n";
+			$html .= '" data-fn="' .$fileNameFromDb .'">' ."\n";
 		}
 		if ($html == null) {
 			$html = "<p>Kahjuks avalike pilte ei leitud</p> \n";
