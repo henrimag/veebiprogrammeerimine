@@ -11,4 +11,13 @@ Loeng_7
 CREATE TABLE `if19_henri_ma_1`.`vpmsg` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `userid` INT(11) NOT NULL , `message` VARCHAR(256) NOT NULL , `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , `deleted` DATE NULL , `deletedby` INT(11) NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 Üles laetud piltide tabel, 05.11 (Loeng 9)
+
 CREATE TABLE `if19_henri_ma_1`.`vpphotos` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `userid` INT(11) NOT NULL , `filename` VARCHAR(40) NOT NULL , `created` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , `alttext` VARCHAR(256) NULL , `privacy` INT(1) NOT NULL , `deleted` DATE NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+AJAX'i abil pildi hindamise (Loeng_11_kodutöö)
+
+CREATE TABLE `if19_henri_ma_1`.`vpphotoratings` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `photoid` INT(11) NOT NULL , `userid` INT(11) NOT NULL , `rating` INT(1) NOT NULL , `added` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+Loeng_13, uudised
+
+CREATE TABLE `if19_henri_ma_1`.`vpuudis` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `userid` INT(7) NOT NULL , `title` VARCHAR(140) NOT NULL , `content` VARCHAR(2000) NOT NULL , 'expire' DATE NOT NULL , `added' DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , `deleted` DATE NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
